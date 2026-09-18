@@ -10,25 +10,20 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "inventory_items")
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Order {
-
+public class InventoryItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderId;
+    private long itemId;
 
-    private Long customerId;
-    private LocalDateTime orderDate;
-
-    @Enumerated(EnumType.STRING)
-    private OrderStatus orderStatus;
-    private boolean orderNeeded;
-    private BigDecimal totalAmount;
-
+    private String itemName;
+    private String description;
+    private BigDecimal price;
+    private int itemQuantity;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
