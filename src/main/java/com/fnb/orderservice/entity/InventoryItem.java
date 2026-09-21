@@ -23,7 +23,7 @@ public class InventoryItem {
     private String itemName;
     private String description;
     private BigDecimal price;
-    private int itemQuantity;
+    private int stockQuantity;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 

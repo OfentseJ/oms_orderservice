@@ -1,7 +1,9 @@
 package com.fnb.orderservice.repository;
 
-import com.fnb.orderservice.entity.InventoryItem;
+import com.fnb.orderservice.entity.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface OrderItemRepository extends JpaRepository<InventoryItem, Long> {
+@Repository
+public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
 }
