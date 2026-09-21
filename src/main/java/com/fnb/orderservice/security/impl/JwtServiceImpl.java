@@ -16,9 +16,6 @@ public class JwtServiceImpl implements JwtService {
     @Value("${jwt.secret}")
     private String secret;
 
-    @Value("${jwt.expiration-ms}")
-    private Long expirationMs;
-
     private SecretKey signingKey(){
         return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
@@ -28,26 +25,20 @@ public class JwtServiceImpl implements JwtService {
         try{
             Claims claims = parseClaims(token);
             //boolean usernameMatched = claims.getSubject().equals(email);
-            boolean notExpired = claims.getExpiration().before(new Date());
-            return notExpired;
+            return claims.getExpiration().before(new Date());
         } catch (ExpiredJwtException e){
             return false;
         }
     }
 
     @Override
-    public String extractUsername(String token) {
-        return "";
-    }
-
-    @Override
     public String extractRole(String token) {
-        return "";
+        return parseClaims(token).get("ROLE", String.class);
     }
 
     @Override
     public String extractEmailFromToken(String token) {
-        return "";
+        return parseClaims(token).getSubject();
     }
 
     private Claims parseClaims(String token){
